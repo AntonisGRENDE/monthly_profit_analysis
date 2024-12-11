@@ -70,6 +70,9 @@ namewise_summary = pd.concat([namewise_summary, total_row], ignore_index=True)
 # Check if the output file exists
 if not os.path.exists(output_file):
     wb = Workbook()  # Create a new workbook
+    # Remove the default empty sheet
+    if "Sheet" in wb.sheetnames:
+        del wb['Sheet']
     wb.save(output_file)  # Save it so that it exists for subsequent operations
 else:
     wb = openpyxl.load_workbook(output_file)
